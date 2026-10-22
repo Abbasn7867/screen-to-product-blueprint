@@ -11,7 +11,7 @@ export const LEGAL = {
 };
 
 const ctaBase =
-  "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/60";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/60";
 
 export function CtaButton({
   size = "md",
