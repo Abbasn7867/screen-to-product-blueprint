@@ -193,9 +193,9 @@ body {padding-bottom:var(--offer-space);}
 .hero-notifications {position:absolute;inset:0;pointer-events:none;}
 .hero-notification {position:absolute;display:flex;align-items:center;gap:7px;padding:12px 15px;font-size:11px;font-weight:700;border-radius:8px;animation:float-y 6s ease-in-out infinite;}
 .notification-0 {top:-36px;left:-24px;}
-.notification-1 {top:65px;right:-24px;animation-delay:.8s;}
-.notification-2 {bottom:35px;left:-36px;animation-delay:1.6s;}
-.notification-3 {bottom:-36px;right:-18px;animation-delay:2.4s;}
+.notification-1 {top:55px;right:-18px;animation-delay:.8s;}
+.notification-2 {bottom:-30px;left:-18px;animation-delay:1.6s;}
+.notification-3 {bottom:-64px;right:-18px;animation-delay:2.4s;}
 .trust-strip {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px;padding:28px 24px;border-bottom:1px solid var(--border);background:var(--card);}
 .call-player {border:1px solid var(--border);border-radius:8px;background:var(--card);box-shadow:var(--shadow-float);overflow:hidden;}
 .compact-call {background:var(--frosted-fallback);backdrop-filter:blur(16px);}
@@ -291,3 +291,9 @@ body {padding-bottom:var(--offer-space);}
  .bottom-offer {display:grid;grid-template-columns:36px 1fr;padding:15px 20px 15px 14px;gap:10px;}.offer-avatar img {width:36px;height:36px;}.offer-copy p:first-child {font-size:9px;}.offer-copy p:last-child {font-size:9px;}.bottom-offer>a {grid-column:1/-1;width:100%;font-size:12px;padding:11px;}.offer-close {width:20px;height:20px;right:0;top:0;}.exit-modal {padding:32px 22px 22px;gap:16px;}.exit-modal h2 {font-size:27px;}.exit-modal>p {font-size:13px;}
 }
 @media(prefers-reduced-motion:reduce) {.exit-modal {animation:modal-fade .2s ease;}.hero-live {transform:none;}.photo-shade {transition:none;}}
+
+.process-flow:before {animation:process-draw 3s ease-in-out infinite alternate;}
+@keyframes process-draw {from {clip-path:inset(0 100% 0 0);}to {clip-path:inset(0);}}
+.team-fixes {transition:transform .3s ease;}
+.team-card:hover .team-fixes {transform:translateY(-3px);}
+@media(max-width:767px) {.notification-2 {bottom:-23px;left:0;}.notification-3 {bottom:-52px;right:0;}.process-flow:before {animation:none;}}

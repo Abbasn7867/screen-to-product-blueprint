@@ -2,8 +2,8 @@
 - [x] Create reference-based Amy portrait and medical reception scene.
 - [x] Verify portraits and agent selection on the page.
 - [x] Match the monitor casing to its silver base in Amy's reception image and update the page.
-- [ ] Render all 34 exact pain points from shared data with eight category photos and the full team.
-- [ ] Add animated call scenarios, proof call, day timeline, comparison, sample dashboard, process and compliance sections.
-- [ ] Update navigation, pricing links, services, FAQ and footer to the expanded brief.
+- [x] Render all 34 exact pain points from shared data with eight category photos and the full team.
+- [x] Add animated call scenarios, proof call, day timeline, comparison, sample dashboard, process and compliance sections.
+- [x] Update navigation, pricing links, services, FAQ and footer to the expanded brief.
 - [ ] Add accessible session-based offer bar and exit pop-up; verify desktop and mobile behavior.
 - [ ] Published Chrome frosting check (blocked until user requests publication).

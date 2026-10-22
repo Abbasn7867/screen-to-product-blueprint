@@ -1,15 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import {
-  Phone, CalendarCheck, Clock, Moon, Sparkles, PhoneCall, Settings2, Gift, Check, ArrowRight, Mic,
+  Clock, Check, ArrowRight,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { PainSection, TeamSection } from "@/components/pain-section";
 import { CallPlayer } from "@/components/call-player";
 import { ProofCall, ActionSection, DayTimeline, Comparison, Dashboard, Compliance, Process, Services } from "@/components/flagship-sections";
 import { OfferLine } from "@/components/site-offers";
 import amyScene from "@/assets/amy-medical-scene-silver.jpg";
-import { AGENT_PORTRAITS } from "@/lib/agent-portraits";
 import { Button } from "@/components/ui/button";
 import caduceus from "@/assets/caduceus.jpg.asset.json";
 import { CtaButton, Reveal, SiteFooter, SiteHeader, TrustBadges } from "@/components/site";
@@ -42,10 +41,13 @@ function Index() {
 }
 function Hero() {
  const ref=useRef<HTMLElement>(null);
+ const { scrollYProgress }=useScroll({target:ref,offset:["start start","end start"]});
+ const parallax=useTransform(scrollYProgress,[0,1],[0,32]);
+ const reduce=useReducedMotion();
  const move=(e:React.MouseEvent<HTMLElement>)=>{const r=e.currentTarget.getBoundingClientRect();ref.current?.style.setProperty('--mouse-x',`${(e.clientX-r.left-r.width/2)/80}deg`);ref.current?.style.setProperty('--mouse-y',`${-(e.clientY-r.top-r.height/2)/80}deg`);};
  return <section className="flagship-hero" ref={ref} onMouseMove={move} onMouseLeave={()=>{ref.current?.style.setProperty('--mouse-x','0deg');ref.current?.style.setProperty('--mouse-y','0deg');}}>
   <img src={amyScene} alt="Amy, AI Receptionist at a bright medical practice front desk with a silver monitor" className="hero-photo"/>
-  <div className="hero-scrim"/><div className="page-width hero-content"><div className="hero-copy"><p className="eyebrow">AI Solution Company / Medical Practices</p><h1>Every patient call answered, every visit booked, so your team can focus on the patients in front of them.</h1><p className="hero-subhead">Meet Amy and the AI Front Office team: 8 AI employees that answer, book, follow up and report for your practice, 24/7.</p><div className="mt-7 flex flex-wrap items-center gap-5"><CtaButton size="lg">Book a Free Trial <ArrowRight size={18}/></CtaButton><a href="#pricing" className="font-bold text-primary underline underline-offset-4">See pricing</a></div><p className="mt-4 text-sm font-medium">14 days free · $0 setup (was $1,000) · $250 bonus credits</p></div><div className="hero-live"><CallPlayer compact/><div className="hero-notifications">{['New patient booked ✓','Insurance checked ✓','Reminder sent ✓','Review request sent ✓'].map((n,i)=><motion.div key={n} initial={{y:16,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.5+i*.3}} className={`hero-notification notification-${i} glass`}><Check size={14} className="text-agent-amy"/>{n}</motion.div>)}</div></div></div>
+  <div className="hero-scrim"/><div className="page-width hero-content"><div className="hero-copy"><p className="eyebrow">AI Solution Company / Medical Practices</p><h1>Every patient call answered, every visit booked, so your team can focus on the patients in front of them.</h1><p className="hero-subhead">Meet Amy and the AI Front Office team: 8 AI employees that answer, book, follow up and report for your practice, 24/7.</p><div className="mt-7 flex flex-wrap items-center gap-5"><CtaButton size="lg">Book a Free Trial <ArrowRight size={18}/></CtaButton><a href="#pricing" className="font-bold text-primary underline underline-offset-4">See pricing</a></div><p className="mt-4 text-sm font-medium">14 days free · $0 setup (was $1,000) · $250 bonus credits</p></div><div className="hero-live"><CallPlayer compact/><motion.div className="hero-notifications" style={{y:reduce?0:parallax}}>{['New patient booked ✓','Insurance checked ✓','Reminder sent ✓','Review request sent ✓'].map((n,i)=><motion.div key={n} initial={{y:16,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.5+i*.3}} className={`hero-notification notification-${i} glass`}><Check size={14} className="text-agent-amy"/>{n}</motion.div>)}</motion.div></div></div>
  </section>;
 }
 
@@ -99,7 +101,7 @@ function Pricing() {
               </div>
               <p className={`mt-2 text-sm ${p.popular ? "text-on-dark-muted" : "text-muted-foreground"}`}>{p.blurb}</p>
               <p className="mt-6">
-                <span className="text-5xl font-extrabold">{formatUSD(priceFor(p.id, billing))}</span>
+                <motion.span key={billing} initial={{y:6,opacity:0}} animate={{y:0,opacity:1}} className="inline-block text-5xl font-extrabold">{formatUSD(priceFor(p.id, billing))}</motion.span>
                 <span className={p.popular ? "text-on-dark-muted" : "text-muted-foreground"}>/month</span>
               </p>
               <p className={`text-sm ${p.popular ? "text-on-dark-muted" : "text-muted-foreground"}`}>
