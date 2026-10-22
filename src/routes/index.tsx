@@ -6,7 +6,8 @@ import {
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { PainSection, TeamSection } from "@/components/pain-section";
 import { CallPlayer } from "@/components/call-player";
-import { ProofCall, ActionSection, DayTimeline, Comparison, Dashboard, Compliance, Process, Services } from "@/components/flagship-sections";
+import { IntroVideoSection, WatchIntroButton } from "@/components/intro-video";
+import { TestCall, ActionSection, DayTimeline, Comparison, Dashboard, Compliance, Process, Services } from "@/components/flagship-sections";
 import { OfferLine } from "@/components/site-offers";
 import amyScene from "@/assets/amy-medical-scene-silver.jpg";
 import { Button } from "@/components/ui/button";
@@ -37,7 +38,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
- return <div className="overflow-x-clip"><SiteHeader/><main><Hero/><div className="trust-strip"><TrustBadges/><span className="flex items-center gap-2 font-bold text-primary"><Clock size={17}/>24/7</span><span className="text-sm font-semibold">Your own number in minutes</span></div><PainSection/><TeamSection/><ProofCall/><ActionSection/><DayTimeline/><Comparison/><Dashboard/><Process/><Compliance/><Services/><Pricing/><Faq/><FinalCta/></main><SiteFooter/></div>;
+ return <div className="overflow-x-clip"><SiteHeader/><main><Hero/><div className="trust-strip"><TrustBadges/><span className="flex items-center gap-2 font-bold text-primary"><Clock size={17}/>24/7</span><span className="text-sm font-semibold">Your own number in minutes</span></div><PainSection/><TeamSection/><IntroVideoSection/><TestCall/><ActionSection/><DayTimeline/><Comparison/><Dashboard/><Process/><Compliance/><Services/><Pricing/><Faq/><FinalCta/></main><SiteFooter/></div>;
 }
 function Hero() {
  const ref=useRef<HTMLElement>(null);
@@ -47,7 +48,7 @@ function Hero() {
  const move=(e:React.MouseEvent<HTMLElement>)=>{const r=e.currentTarget.getBoundingClientRect();ref.current?.style.setProperty('--mouse-x',`${(e.clientX-r.left-r.width/2)/80}deg`);ref.current?.style.setProperty('--mouse-y',`${-(e.clientY-r.top-r.height/2)/80}deg`);};
  return <section className="flagship-hero" ref={ref} onMouseMove={move} onMouseLeave={()=>{ref.current?.style.setProperty('--mouse-x','0deg');ref.current?.style.setProperty('--mouse-y','0deg');}}>
   <img src={amyScene} alt="Amy, AI Receptionist at a bright medical practice front desk with a silver monitor" className="hero-photo"/>
-  <div className="hero-scrim"/><div className="page-width hero-content"><div className="hero-copy"><p className="eyebrow">AI Solution Company / Medical Practices</p><h1>Every patient call answered, every visit booked, so your team can focus on the patients in front of them.</h1><p className="hero-subhead">Meet Amy and the AI Front Office team: 8 AI employees that answer, book, follow up and report for your practice, 24/7.</p><div className="mt-7 flex flex-wrap items-center gap-5"><CtaButton size="lg">Book a Free Trial <ArrowRight size={18}/></CtaButton><a href="#pricing" className="font-bold text-primary underline underline-offset-4">See pricing</a></div><p className="mt-4 text-sm font-medium">14 days free · $0 setup (was $1,000) · $250 bonus credits</p></div><div className="hero-live"><CallPlayer compact/><motion.div className="hero-notifications" style={{y:reduce?0:parallax}}>{['New patient booked ✓','Insurance checked ✓','Reminder sent ✓','Review request sent ✓'].map((n,i)=><motion.div key={n} initial={{y:16,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.5+i*.3}} className={`hero-notification notification-${i} glass`}><Check size={14} className="text-agent-amy"/>{n}</motion.div>)}</motion.div></div></div>
+  <div className="hero-scrim"/><div className="page-width hero-content"><div className="hero-copy"><p className="eyebrow">AI Solution Company / Medical Practices</p><h1>Every Patient Call Answered, Every Visit Booked, So Your Team Can Focus on the Patients in Front of Them.</h1><p className="hero-subhead">Meet Amy and the AI Front Office team: 8 AI employees that answer, book, follow up and report for your practice, 24/7.</p><div className="mt-7 flex flex-wrap items-center gap-5"><CtaButton size="lg">Book a Free Trial <ArrowRight size={18}/></CtaButton><WatchIntroButton/><a href="#pricing" className="font-bold text-primary underline underline-offset-4">See Pricing</a></div><p className="mt-4 text-sm font-medium">14 days free · $0 setup (was $1,000) · $250 bonus credits</p></div><div className="hero-live"><CallPlayer compact/><motion.div className="hero-notifications" style={{y:reduce?0:parallax}}>{['New patient booked ✓','Insurance checked ✓','Reminder sent ✓','Review request sent ✓'].map((n,i)=><motion.div key={n} initial={{y:16,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.5+i*.3}} className={`hero-notification notification-${i} glass`}><Check size={14} className="text-agent-amy"/>{n}</motion.div>)}</motion.div></div></div>
  </section>;
 }
 
@@ -58,7 +59,7 @@ function Pricing() {
 
       <div className="relative mx-auto max-w-6xl">
         <Reveal className="text-center">
-          <h2 className="text-4xl font-extrabold md:text-6xl">Simple plans. Full platform trial.</h2>
+          <h2 className="text-4xl font-extrabold md:text-6xl">Simple Plans. Full Platform Trial.</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Every plan starts with the full-platform trial. Nothing locked.
           </p>
@@ -121,7 +122,7 @@ function Pricing() {
 
         <p className="mt-8 text-center text-muted-foreground">
           Need Billing, Credentialing, Eligibility Verification and more?{" "}
-          <a href="/free-trial" className="font-bold text-primary underline">Talk to our team</a>
+          <a href="/free-trial" className="font-bold text-primary underline">Talk to Our Team</a>
         </p>
         <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-muted-foreground">
           Choose monthly or yearly billing. Monthly plans are month-to-month with no long-term contract — cancel anytime
@@ -134,12 +135,12 @@ function Pricing() {
 
 function Faq() {
   const faqs: [string, string][] = [
-    ["What is the instant proof call?", "After setup, our test caller rings Amy on your own number and asks your practice's FAQs. Your test call recording arrives on your dashboard and in your inbox within 3–4 minutes of setup."],
+    ["What is the instant test call?", "After setup, our test caller rings Amy on your own booking line and asks your practice's FAQs. Your test call recording arrives on your dashboard and in your inbox within 3–4 minutes of setup."],
     ["Which calendar or practice software works with Amy?", "Amy works with the calendar and practice-management software you already use; we connect it during setup. Ask us about yours."],
     ["Can Amy transfer calls to staff?", "Yes. Amy recognizes a transfer request and routes the call to the right staff member with the reason logged, following your practice's rules."],
     ["What happens after the trial?", "Choose the plan and billing period that fit your practice. Monthly plans are month-to-month with no long-term contract — cancel anytime before your next billing date. Prefer yearly? Pay annually and save 12% on any plan."],
     ["Is the free trial the full product?", "Yes. You get 14 days of the full platform. Nothing is locked during the trial."],
-    ["How long does setup take?", "The Quick Start checklist on your dashboard takes about 10 minutes. Or share your information and our team configures everything at no cost during launch."],
+    ["How long does setup take?", "Get Set Up in Minutes: the Setup Wizard walks you through each step. Or share your information and our team configures everything at no cost during launch."],
     ["Does Amy give medical advice?", "No. Amy handles front-office tasks only. Emergencies are directed to 911, urgent concerns go to your staff or nurse line, and refill or results requests are routed to clinical staff."],
     ["Is it secure?", "AI Solution Company is HIPAA compliant and SOC 2 compliant, and a BAA is available. Everything runs on secure, enterprise-grade cloud infrastructure."],
         ["What are the $250 bonus credits?", "Your $250 bonus credits are applied to call minutes, roughly 250 minutes of live calls handled by your AI team."],
@@ -148,7 +149,7 @@ function Faq() {
   return (
     <section id="faq" className="scroll-mt-24 bg-card px-6 py-24">
       <div className="mx-auto max-w-3xl">
-        <h2 className="text-center text-4xl font-extrabold md:text-5xl">Questions, answered.</h2>
+        <h2 className="text-center text-4xl font-extrabold md:text-5xl">Questions, Answered.</h2>
         <Accordion type="single" collapsible className="mt-10">
           {faqs.map(([q, a]) => (
             <AccordionItem key={q} value={q}>
@@ -163,5 +164,5 @@ function Faq() {
 }
 
 function FinalCta() {
- return <section className="final-cta bg-signature px-6 py-20 text-on-dark"><div className="page-width relative"><img src={caduceus.url} alt="" aria-hidden="true" loading="lazy" className="final-symbol"/><div className="relative max-w-3xl"><h2 className="text-4xl font-extrabold md:text-6xl">Your patients are calling. Let Amy answer.</h2><div className="mt-8"><CtaButton variant="light" size="lg"/></div><p className="mt-5 text-sm"><OfferLine/></p></div></div></section>;
+ return <section className="final-cta bg-signature px-6 py-20 text-on-dark"><div className="page-width relative"><img src={caduceus.url} alt="" aria-hidden="true" loading="lazy" className="final-symbol"/><div className="relative max-w-3xl"><h2 className="text-4xl font-extrabold md:text-6xl">Your Patients Are Calling. Let Amy Answer.</h2><div className="mt-8"><CtaButton variant="light" size="lg"/></div><p className="mt-5 text-sm"><OfferLine/></p></div></div></section>;
 }

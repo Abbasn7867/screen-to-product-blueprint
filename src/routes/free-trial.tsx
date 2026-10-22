@@ -35,10 +35,11 @@ const schema = z.object({
   website: z.string().trim().max(255).optional(),
 });
 
-const DASHBOARD = "https://aisolutioncompany.com/practice/dashboard";
+const SETUP_URL = "https://aisolutioncompany.com/practice/setup";
 
 function FreeTrial() {
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [done, setDone] = useState(false);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,7 +60,8 @@ function FreeTrial() {
       submitted_at: now,
     };
     localStorage.setItem("aisc_trial_signup", JSON.stringify(record));
-    window.location.href = DASHBOARD;
+    setDone(true);
+    window.setTimeout(() => { window.location.href = SETUP_URL; }, 2500);
   };
 
   const field = (id: string, label: string, type = "text", required = true, autoComplete?: string) => (
@@ -89,14 +91,14 @@ function FreeTrial() {
         <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <h1 className="text-5xl font-extrabold leading-tight md:text-6xl">
-              Start your <span className="text-gradient">14-day free trial.</span>
+              Start Your <span className="text-gradient">14-Day Free Trial.</span>
             </h1>
             <p className="mt-5 text-lg text-muted-foreground">The full Complete AI Front Office. Nothing locked.</p>
             <ul className="mt-8 space-y-4">
               {[
                 <>Setup <s>$1,000</s> <strong>$0</strong> during launch</>,
                 <>$250 in bonus credits — roughly 250 call minutes</>,
-                <>Your dashboard opens right away; Quick Start takes about 10 minutes</>,
+                <>Get Set Up in Minutes with the Setup Wizard</>,
                 <>Your instant test call: your own number, recorded and emailed to you in 3–4 minutes</>,
               ].map((t, i) => (
                 <li key={i} className="flex gap-3">
@@ -107,6 +109,13 @@ function FreeTrial() {
             <div className="mt-8"><TrustBadges /></div>
           </div>
 
+          {done ? (
+            <div role="status" className="space-y-5 rounded-[2rem] p-8 glass text-center">
+              <h2 className="text-3xl font-extrabold">Thank You! You're In.</h2>
+              <p className="text-muted-foreground">Taking you to the Setup Wizard to get your AI front office live…</p>
+              <a href={SETUP_URL} className="inline-block w-full rounded-full bg-primary px-7 py-4 text-lg font-bold text-primary-foreground shadow-soft hover:bg-primary-deep">Start Setup Now</a>
+            </div>
+          ) : (
           <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-[2rem] p-8 glass">
             {field("name", "Your name", "text", true, "name")}
             {field("practice", "Practice name", "text", true, "organization")}
@@ -136,6 +145,7 @@ function FreeTrial() {
               Your instant test call is recorded and the recording is sent to the email you provide. <LegalLinks />
             </p>
           </form>
+          )}
         </div>
       </main>
       <SiteFooter />
