@@ -1,0 +1,3 @@
+- [ ] Add the seven supplied agent portraits without alteration.
+- [ ] Create reference-based Amy portrait and medical reception scene.
+- [ ] Verify portraits and agent selection on the page.
