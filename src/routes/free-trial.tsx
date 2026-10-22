@@ -5,7 +5,8 @@ import { Check } from "lucide-react";
 import { LegalLinks, SiteFooter, SiteHeader, TrustBadges } from "@/components/site";
 
 export const Route = createFileRoute("/free-trial")({
-  validateSearch: (search: Record<string, unknown>): { plan?: "receptionist" | "pro" | "full" | undefined; billing?: "monthly" | "yearly" | undefined } => ({
+  validateSearch: (search: Record<string, unknown>): { plan?: "receptionist" | "pro" | "full" | undefined; billing?: "monthly" | "yearly" | undefined; pains?: string | undefined } => ({
+    pains: typeof search['pains'] === "string" && /^[p0-9,]{1,200}$/.test(search['pains']) ? search['pains'] : undefined,
     plan: search['plan'] === "receptionist" || search['plan'] === "pro" || search['plan'] === "full" ? search['plan'] : undefined,
     billing: search['billing'] === "monthly" || search['billing'] === "yearly" ? search['billing'] : undefined,
   }),
@@ -38,6 +39,7 @@ const schema = z.object({
 const SETUP_URL = "https://aisolutioncompany.com/practice/setup";
 
 function FreeTrial() {
+  const search = Route.useSearch();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [done, setDone] = useState(false);
 
@@ -57,6 +59,8 @@ function FreeTrial() {
       ...parsed.data,
       consent_sms_account: fd.get("consent_sms_account") === "on" ? { text: CONSENT_SMS, at: now } : null,
       consent_marketing: fd.get("consent_marketing") === "on" ? { text: CONSENT_MARKETING, at: now } : null,
+      selected_pains: search.pains ? search.pains.split(",") : null,
+      selected_plan: search.plan ?? null,
       submitted_at: now,
     };
     localStorage.setItem("aisc_trial_signup", JSON.stringify(record));
