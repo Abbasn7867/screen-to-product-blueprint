@@ -1,4 +1,4 @@
 - [x] Add the seven supplied agent portraits without alteration.
 - [x] Create reference-based Amy portrait and medical reception scene.
 - [x] Verify portraits and agent selection on the page.
-- [ ] Match the monitor casing to its silver base in Amy's reception image and update the page.
+- [x] Match the monitor casing to its silver base in Amy's reception image and update the page.
