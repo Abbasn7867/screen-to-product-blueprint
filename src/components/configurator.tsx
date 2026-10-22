@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { CATEGORIES } from "@/data/painPoints";
 import { agentFor } from "@/lib/medical-presentation";
@@ -16,6 +16,8 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
   const [on, setOn] = useState<string[]>(ALL_PAIN_IDS);
   const [closed, setClosed] = useState<string[]>([]);
   const [sheet, setSheet] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { amount: 0.05 });
   const usage = agentUsage(on);
   const activeAgents = usage.filter((u) => u.on > 0).length;
   const planId: PlanId = recommendPlan(on);
@@ -60,7 +62,7 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
   );
 
   return (
-    <section id="configure" className="section-space scroll-mt-32">
+    <section ref={ref} id="configure" className="section-space scroll-mt-32">
       <div className="page-width">
         <div className="section-heading">
           <p className="eyebrow">Build Your AI Front Office</p>
@@ -104,12 +106,12 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
           <aside className="hidden lg:block"><div className="sticky top-28 rounded-lg border border-border bg-card p-6 shadow-soft">{summary}</div></aside>
         </div>
       </div>
-      <div className="fixed inset-x-0 bottom-0 z-40 max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-border bg-card p-4 shadow-soft lg:hidden">
+      {inView && <div className="fixed inset-x-0 bottom-0 z-40 max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-border bg-card p-4 shadow-soft lg:hidden">
         <button type="button" aria-expanded={sheet} onClick={() => setSheet((v) => !v)} className="flex w-full items-center justify-between font-extrabold">
           <span>{plan.name} · {activeAgents} of 8 agents · {coveragePercent(on)}%</span>{sheet ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
         </button>
         {sheet && <div className="mt-4">{summary}</div>}
-      </div>
+      </div>}
     </section>
   );
 }
