@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteOffers } from "@/components/site-offers";
 import { CookieBanner } from "@/components/site";
 
 function NotFoundComponent() {
@@ -124,6 +125,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <CookieBanner />
+      <SiteOffers />
     </QueryClientProvider>
   );
 }
