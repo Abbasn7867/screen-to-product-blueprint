@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ShieldCheck, Lock, FileCheck2 } from "lucide-react";
+import { ShieldCheck, Lock, FileCheck2, X, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { Billing } from "@/lib/pricing";
 import logo from "@/assets/aisc-logo.png.asset.json";
 
 export const LEGAL = {
@@ -18,11 +20,14 @@ export function CtaButton({
   variant = "primary",
   className = "",
   children = "Book a Free Trial",
+  plan, billing,
 }: {
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "light";
   className?: string;
   children?: ReactNode;
+  plan?: "receptionist" | "pro" | "full";
+  billing?: Billing;
 }) {
   const sizes = { sm: "px-5 py-2.5 text-sm", md: "px-7 py-3.5 text-base", lg: "px-9 py-4 text-lg" };
   const variants = {
@@ -31,7 +36,7 @@ export function CtaButton({
     light: "bg-card text-primary hover:-translate-y-0.5 hover:bg-accent-soft",
   };
   return (
-    <Link to="/free-trial" className={`${ctaBase} ${sizes[size]} ${variants[variant]} ${className}`}>
+    <Link to="/free-trial" search={plan && billing ? { plan, billing } : {}} className={`${ctaBase} ${sizes[size]} ${variants[variant]} ${className}`}>
       {children}
     </Link>
   );
@@ -42,22 +47,14 @@ export function Logo({ className = "h-9" }: { className?: string }) {
 }
 
 export function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-40">
-      <div className="mx-auto mt-3 flex max-w-6xl items-center justify-between rounded-full px-4 py-2.5 glass md:px-6">
-        <Link to="/" aria-label="AI Solution Company home">
-          <Logo className="h-8 md:h-9" />
-        </Link>
-        <nav aria-label="Main" className="hidden items-center gap-7 text-sm font-semibold text-muted-foreground md:flex">
-          <a href="/#team" className="hover:text-primary">AI team</a>
-          <a href="/#how" className="hover:text-primary">How it works</a>
-          <a href="/#pricing" className="hover:text-primary">See pricing</a>
-          <a href="/#faq" className="hover:text-primary">FAQ</a>
-        </nav>
-        <CtaButton size="sm" />
-      </div>
-    </header>
-  );
+  const [announcement,setAnnouncement]=useState(true);
+  const [menu,setMenu]=useState(false);
+  const links=[["Problems","problems"],["AI Team","team"],["Proof Call","proof-call"],["Pricing","pricing"],["FAQ","faq"]];
+  return <header className="site-header">
+    {announcement && <div className="announcement bg-signature text-on-dark"><p>Launch offer: 14-day free trial · Setup <s>$1,000</s> <strong>$0</strong> · +$250 bonus credits</p><a href="/free-trial" className="font-bold underline underline-offset-4">Book a Free Trial →</a><Button variant="ghost" size="icon" aria-label="Dismiss announcement" className="announcement-close hover:bg-primary/20 hover:text-on-dark" onClick={()=>setAnnouncement(false)}><X size={15}/></Button></div>}
+    <div className="navigation glass"><Link to="/" aria-label="AI Solution Company home"><Logo className="h-8 md:h-9"/></Link><nav aria-label="Main" className="hidden lg:flex items-center gap-6 text-sm font-semibold text-muted-foreground">{links.map(([label,id])=><a key={id} href={`/#${id}`} className="hover:text-primary">{label}</a>)}</nav><div className="flex items-center gap-2"><CtaButton size="sm"/><Button variant="ghost" size="icon" aria-label="Toggle navigation" aria-expanded={menu} onClick={()=>setMenu(v=>!v)} className="lg:hidden">{menu?<X size={20}/>:<Menu size={20}/>}</Button></div></div>
+    {menu&&<nav aria-label="Mobile navigation" className="mobile-navigation glass">{links.map(([label,id])=><a key={id} href={`/#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}</nav>}
+  </header>;
 }
 
 export function TrustBadges({ dark = false }: { dark?: boolean }) {
@@ -110,7 +107,7 @@ export function SiteFooter() {
         </div>
         <div className="text-sm text-muted-foreground">
           <p className="font-bold text-foreground">AI Solution Company</p>
-          <p className="mt-2">18605 Kerill Rd, Triangle, VA 22172</p>
+          <nav className="mt-3 flex flex-col gap-2" aria-label="Footer">{[["Problems","problems"],["AI Team","team"],["Proof Call","proof-call"],["Pricing","pricing"],["FAQ","faq"]].map(([label,id])=><a key={id} href={`/#${id}`}>{label}</a>)}</nav>
           <a href="https://www.aisolutioncompany.com" target="_blank" rel="noopener noreferrer" className="mt-2 inline-block underline hover:text-primary">
             aisolutioncompany.com
           </a>
@@ -131,7 +128,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <p className="border-t py-5 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} AI Solution Company · Powered by AI Solution Company
+        © AI Solution Company
       </p>
     </footer>
   );
@@ -146,6 +143,7 @@ export function CookieBanner() {
   const choose = (v: string) => {
     localStorage.setItem("aisc_cookie_choice", v);
     setShow(false);
+    window.dispatchEvent(new Event("aisc-cookie-choice"));
   };
   return (
     <div role="dialog" aria-label="Cookie notice" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-2xl rounded-2xl p-5 glass">
@@ -156,12 +154,12 @@ export function CookieBanner() {
         </a>
       </p>
       <div className="mt-3 flex gap-2">
-        <button onClick={() => choose("accepted")} className={`${ctaBase} bg-primary px-5 py-2 text-sm text-primary-foreground`}>
+        <Button onClick={() => choose("accepted")}>
           Accept
-        </button>
-        <button onClick={() => choose("essential")} className={`${ctaBase} border border-input bg-card px-5 py-2 text-sm text-primary`}>
+        </Button>
+        <Button variant="outline" onClick={() => choose("essential")}>
           Essential only
-        </button>
+        </Button>
       </div>
     </div>
   );
