@@ -152,7 +152,7 @@ function Proof() {
 
 function Team() {
   const [active, setActive] = useState(0);
-  const a = AGENTS[active];
+  const a = AGENTS[active] ?? AGENTS[0]!;
   return (
     <section id="team" className="scroll-mt-24 px-6 py-24">
       <div className="mx-auto max-w-6xl">
@@ -328,7 +328,7 @@ function Pricing() {
 }
 
 function Faq() {
-  const faqs = [
+  const faqs: [string, string][] = [
     ["Is the free trial the full product?", "Yes. You get 14 days of the full platform. Nothing is locked during the trial."],
     ["How long does setup take?", "The Quick Start checklist on your dashboard takes about 10 minutes. Or share your information and our team configures everything at no cost during launch."],
     ["Does Amy give medical advice?", "No. Amy handles front-office tasks only. Emergencies are directed to 911, urgent concerns go to your staff or nurse line, and refill or results requests are routed to clinical staff."],
