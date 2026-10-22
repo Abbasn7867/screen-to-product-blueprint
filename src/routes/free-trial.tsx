@@ -70,7 +70,8 @@ function FreeTrial() {
 
   const go = async (to: number) => {
     if (to > step) {
-      const ok = await trigger(STEPS[step]!.fields);
+      const ok = await trigger(STEPS[step]!.fields, { shouldFocus: true });
+      console.debug("step validation", step, ok, form.formState.errors);
       if (!ok) return;
     }
     setDir(to > step ? 1 : -1);
