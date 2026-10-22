@@ -56,7 +56,7 @@ export const CATEGORIES = [
   ]},
   { id: "c8", title: "Practice Intelligence & Reporting", outcome: "See the whole front office at a glance", items: [
     { id: "p32", pain: "Owners and managers can't see calls answered, visits booked and no-shows in one place", agent: "trisha", fix: "Real-time view of calls, bookings, show rates and follow-ups" },
-    { id: "p33", pain: "Stalled follow-ups and missed calls aren't escalated", agent: "trisha", fix: "Flags idle opportunities and missed calls for action" },
+    { id: "p33", pain: "Stalled follow-ups and missed calls aren't handed off to your team", agent: "trisha", fix: "Flags idle opportunities and missed calls for action" },
     { id: "p34", pain: "The front office runs on a few people's memory", agent: "trisha", fix: "Codifies front-office workflows so nothing depends on one person" },
   ]},
 ];
