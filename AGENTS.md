@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep agent portrait sources in the browser-safe `src/lib/agent-portraits.ts` map so selection chips and detail panels use the same image; imported CDN pointers preserve supplied original portraits and Amy uses reference-based bundled images.

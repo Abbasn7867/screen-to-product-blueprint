@@ -3,7 +3,9 @@ import { useState } from "react";
 import {
   Phone, CalendarCheck, Clock, Moon, Sparkles, PhoneCall, Settings2, Gift, Check, ArrowRight, Mic,
 } from "lucide-react";
-import amy from "@/assets/amy-reception.jpg.asset.json";
+import amyScene from "@/assets/amy-medical-scene-silver.jpg";
+import { AGENT_PORTRAITS } from "@/lib/agent-portraits";
+import { Button } from "@/components/ui/button";
 import caduceus from "@/assets/caduceus.jpg.asset.json";
 import { CtaButton, Reveal, SiteFooter, SiteHeader, TrustBadges } from "@/components/site";
 import { PLANS, formatUSD, priceFor, type Billing } from "@/lib/pricing";
@@ -99,16 +101,15 @@ function Hero() {
         <div className="relative">
           <div className="tilt overflow-hidden rounded-[2rem] shadow-soft">
             <img
-              src={amy.url}
+              src={amyScene}
               alt="Amy, a friendly receptionist wearing a headset at a bright medical practice front desk"
               className="aspect-[4/3] w-full object-cover object-[60%_30%]"
             />
           </div>
           <div className="float-y absolute -bottom-10 -left-4 w-72 rounded-2xl p-4 glass md:-left-12">
             <div className="flex items-center gap-2 text-xs font-bold text-primary">
-              <span className="pulse-ring flex h-7 w-7 items-center justify-center rounded-full bg-accent">
-                <Mic className="h-3.5 w-3.5 text-foreground" aria-hidden="true" />
-              </span>
+              <img src={amyScene} alt="Amy, AI Receptionist" loading="lazy" className="h-10 w-14 rounded-md object-cover object-[60%_30%]" />
+              <Mic className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
               Amy · live call · 2:14 AM
             </div>
             <p className="mt-3 text-xs italic text-muted-foreground">"All calls are recorded for quality and training purposes."</p>
@@ -152,7 +153,8 @@ function Proof() {
 
 function Team() {
   const [active, setActive] = useState(0);
-  const a = AGENTS[active] ?? AGENTS[0]!;
+  const a = AGENTS[active] ?? AGENTS[0];
+  if (!a) return null;
   return (
     <section id="team" className="scroll-mt-24 px-6 py-24">
       <div className="mx-auto max-w-6xl">
@@ -166,29 +168,37 @@ function Team() {
         <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div role="tablist" aria-label="AI employees" className="grid grid-cols-2 gap-3">
             {AGENTS.map((ag, i) => (
-              <button
+              <Button
+                variant="ghost"
                 key={ag.name}
                 role="tab"
+                id={`agent-tab-${ag.name}`}
+                aria-controls="agent-panel"
                 aria-selected={i === active}
                 onClick={() => setActive(i)}
-                className={`flex items-center gap-3 rounded-2xl border p-4 text-left transition-all ${
+                className={`h-auto min-h-24 justify-start whitespace-normal rounded-lg border p-3 text-left transition-all sm:gap-3 sm:p-4 ${
                   i === active ? "border-primary bg-card shadow-soft" : "border-transparent bg-muted hover:bg-card"
                 }`}
               >
-                <span className={`h-3 w-3 shrink-0 rounded-full ${ag.dot}`} aria-hidden="true" />
-                <span>
+                <img src={AGENT_PORTRAITS[ag.name]} alt={`${ag.name}, AI ${ag.role}`} loading="lazy" className="h-14 w-12 shrink-0 rounded-md object-cover object-top sm:h-16 sm:w-14" />
+                <span className="min-w-0">
                   <span className="block font-extrabold">{ag.name}</span>
                   <span className="block text-sm text-muted-foreground">{ag.role}</span>
                 </span>
-              </button>
+              </Button>
             ))}
           </div>
-          <div role="tabpanel" className="relative overflow-hidden rounded-[2rem] bg-dark-section p-8 text-on-dark md:p-10">
+          <div role="tabpanel" id="agent-panel" aria-labelledby={`agent-tab-${a.name}`} className="relative overflow-hidden rounded-[2rem] bg-dark-section p-8 text-on-dark md:p-10">
+            <div className="flex flex-wrap items-center gap-5">
+              <img key={a.name} src={AGENT_PORTRAITS[a.name]} alt={`${a.name}, AI ${a.role}`} loading="lazy" className="h-36 w-28 shrink-0 rounded-lg object-cover object-top shadow-soft" />
+              <div className="min-w-0 flex-1">
             <div className="flex items-center gap-3">
               <span className={`h-4 w-4 rounded-full ring-4 ring-on-dark/20 ${a.dot}`} aria-hidden="true" />
               <p className="text-sm font-bold uppercase tracking-widest text-on-dark-muted">{a.area}</p>
             </div>
             <h3 className="mt-4 text-4xl font-extrabold">{a.name}, {a.role}</h3>
+              </div>
+            </div>
             <p className="mt-2 text-on-dark-muted">Owns {a.pains.length} pain points for your practice.</p>
             <ul className="mt-6 space-y-3">
               {a.pains.map((p) => (
