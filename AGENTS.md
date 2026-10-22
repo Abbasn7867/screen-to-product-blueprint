@@ -10,3 +10,6 @@
 <!-- LOVABLE:END -->
 
 - Keep agent portrait sources in the browser-safe `src/lib/agent-portraits.ts` map so selection chips and detail panels use the same image; imported CDN pointers preserve supplied original portraits and Amy uses reference-based bundled images.
+- Keep the medical problem catalog in `src/data/painPoints.ts` and derive category, agent and outcome displays from it so coverage remains consistent.
+- Keep browser-safe presentation metadata and call scenarios separate from route components so SSR imports remain safe and sections share one source.
+- Mount session-based site offers once in the root layout, portal the frosted bar directly to body, and keep timing/visibility rules in a tested pure module so overlays do not interfere with forms or each other.
