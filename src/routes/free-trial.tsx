@@ -5,9 +5,9 @@ import { Check } from "lucide-react";
 import { LegalLinks, SiteFooter, SiteHeader, TrustBadges } from "@/components/site";
 
 export const Route = createFileRoute("/free-trial")({
-  validateSearch: (search: Record<string, unknown>): { plan?: "receptionist" | "pro" | "full"; billing?: "monthly" | "yearly" } => ({
-    plan: search.plan === "receptionist" || search.plan === "pro" || search.plan === "full" ? search.plan : undefined,
-    billing: search.billing === "monthly" || search.billing === "yearly" ? search.billing : undefined,
+  validateSearch: (search: Record<string, unknown>): { plan?: "receptionist" | "pro" | "full" | undefined; billing?: "monthly" | "yearly" | undefined } => ({
+    plan: search['plan'] === "receptionist" || search['plan'] === "pro" || search['plan'] === "full" ? search['plan'] : undefined,
+    billing: search['billing'] === "monthly" || search['billing'] === "yearly" ? search['billing'] : undefined,
   }),
   head: () => ({
     meta: [
