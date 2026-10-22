@@ -13,10 +13,10 @@ export function PricingPlans({ heading = true }: { heading?: boolean }) {
 
       <div className="relative mx-auto max-w-6xl">
         <Reveal className="text-center">
-          <h2 className="text-4xl font-extrabold md:text-6xl">Simple Plans. Full Platform Trial.</h2>
+          {heading && <><h2 className="text-4xl font-extrabold md:text-6xl">Simple Plans. Full Platform Trial.</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Every plan starts with the full-platform trial. Nothing locked.
-          </p>
+          </p></>}
           <div role="radiogroup" aria-label="Billing period" className="mx-auto mt-8 inline-flex rounded-full bg-card p-1.5 shadow-soft">
             {(["monthly", "yearly"] as const).map((b) => (
               <Button variant="ghost"

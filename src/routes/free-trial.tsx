@@ -39,6 +39,7 @@ const schema = z.object({
 const SETUP_URL = "https://aisolutioncompany.com/practice/setup";
 
 function FreeTrial() {
+  const search = Route.useSearch();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [done, setDone] = useState(false);
 
@@ -58,6 +59,8 @@ function FreeTrial() {
       ...parsed.data,
       consent_sms_account: fd.get("consent_sms_account") === "on" ? { text: CONSENT_SMS, at: now } : null,
       consent_marketing: fd.get("consent_marketing") === "on" ? { text: CONSENT_MARKETING, at: now } : null,
+      selected_pains: search.pains ? search.pains.split(",") : null,
+      selected_plan: search.plan ?? null,
       submitted_at: now,
     };
     localStorage.setItem("aisc_trial_signup", JSON.stringify(record));
