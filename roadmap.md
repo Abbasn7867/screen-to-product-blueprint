@@ -5,5 +5,5 @@
 - [x] Render all 34 exact pain points from shared data with eight category photos and the full team.
 - [x] Add animated call scenarios, proof call, day timeline, comparison, sample dashboard, process and compliance sections.
 - [x] Update navigation, pricing links, services, FAQ and footer to the expanded brief.
-- [ ] Add accessible session-based offer bar and exit pop-up; verify desktop and mobile behavior.
+- [x] Add accessible session-based offer bar and exit pop-up; verify desktop and mobile behavior.
 - [ ] Published Chrome frosting check (blocked until user requests publication).
