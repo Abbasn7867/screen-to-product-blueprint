@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 import { LegalLinks, SiteFooter, SiteHeader, TrustBadges } from "@/components/site";
 
 export const Route = createFileRoute("/free-trial")({
-  validateSearch: (search: Record<string, unknown>): { plan?: "receptionist" | "pro" | "full" | undefined; billing?: "monthly" | "yearly" | undefined; pains?: string } => ({
+  validateSearch: (search: Record<string, unknown>): { plan?: "receptionist" | "pro" | "full" | undefined; billing?: "monthly" | "yearly" | undefined; pains?: string | undefined } => ({
     pains: typeof search['pains'] === "string" && /^[p0-9,]{1,200}$/.test(search['pains']) ? search['pains'] : undefined,
     plan: search['plan'] === "receptionist" || search['plan'] === "pro" || search['plan'] === "full" ? search['plan'] : undefined,
     billing: search['billing'] === "monthly" || search['billing'] === "yearly" ? search['billing'] : undefined,
