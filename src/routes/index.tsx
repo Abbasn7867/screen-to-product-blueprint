@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   Phone, CalendarCheck, Clock, Moon, Sparkles, PhoneCall, Settings2, Gift, Check, ArrowRight, Mic,
 } from "lucide-react";
-import amyScene from "@/assets/amy-medical-scene.jpg";
+import amyScene from "@/assets/amy-medical-scene-silver.jpg";
 import { AGENT_PORTRAITS } from "@/lib/agent-portraits";
 import { Button } from "@/components/ui/button";
 import caduceus from "@/assets/caduceus.jpg.asset.json";
