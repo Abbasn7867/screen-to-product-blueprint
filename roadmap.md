@@ -1,9 +1,12 @@
-- [x] Add the seven supplied agent portraits without alteration.
-- [x] Create reference-based Amy portrait and medical reception scene.
-- [x] Verify portraits and agent selection on the page.
-- [x] Match the monitor casing to its silver base in Amy's reception image and update the page.
-- [x] Render all 34 exact pain points from shared data with eight category photos and the full team.
-- [x] Add animated call scenarios, proof call, day timeline, comparison, sample dashboard, process and compliance sections.
-- [x] Update navigation, pricing links, services, FAQ and footer to the expanded brief.
-- [x] Add accessible session-based offer bar and exit pop-up; verify desktop and mobile behavior.
-- [ ] Published Chrome frosting check (blocked until user requests publication).
+# Roadmap
+
+- [x] Configurator + /pricing page
+- [x] Funnel: 4-step free-trial, leads table, thank-you, attribution, analytics events
+- [ ] Page update: person-photo cropping fix (shared .person-photo class, aspect boxes, 4 viewports)
+- [ ] Page update: pricing (Elite rename, new prices, SHOW_PRICES=false launch card, billing note)
+- [ ] Page update: trial wording (3-step strip, exact offer line, 4 FAQ rewrites, no "demo"/minutes)
+- [ ] Page update: pain points 34 → 64 (10 categories, data-driven counts, Elite preset)
+- [ ] Page update: footer disclaimer line
+- [ ] Verify 375/768/1440px: no overflow, photos framed, no prices when SHOW_PRICES false
+- [ ] GHL webhook secret (user must paste URL — form cancelled; ask again)
+- [ ] Published Chrome frosting check (blocked until user requests publication)
