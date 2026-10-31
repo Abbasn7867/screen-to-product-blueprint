@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { CATEGORIES } from "@/data/painPoints";
 import { agentFor } from "@/lib/medical-presentation";
 import { ALL_PAIN_IDS, agentUsage, coveragePercent, presetIds, recommendPlan, type PlanId } from "@/lib/configurator";
-import { PLANS, formatUSD } from "@/lib/pricing";
+import { PLANS, SHOW_PRICES, priceLabel } from "@/lib/pricing";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { AgentChip } from "@/components/pain-section";
@@ -21,7 +21,7 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
   const usage = agentUsage(on);
   const activeAgents = usage.filter((u) => u.on > 0).length;
   const planId: PlanId = recommendPlan(on);
-  const plan = PLANS.find((p) => p.id === planId)!;
+  const plan = PLANS.find((p) => p.id === planId) ?? PLANS[0];
   const toggle = (id: string) => setOn((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
   const Heading = standalone ? "h1" : "h2";
 
@@ -51,12 +51,18 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
         <motion.div key={planId} initial={{ scale: 0.94, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.94, opacity: 0 }} transition={spring} className="rounded-lg bg-dark-section p-5 text-on-dark">
           <p className="text-xs font-bold text-on-dark-muted">Recommended Plan</p>
           <p className="text-2xl font-extrabold">{plan.name}</p>
-          <p className="mt-1"><strong className="text-xl">{formatUSD(plan.monthly)}/mo</strong> <span className="text-sm text-on-dark-muted">or {formatUSD(plan.yearly)}/mo yearly</span></p>
+          <p className={`mt-1 ${SHOW_PRICES ? "text-xl font-bold" : "text-sm text-on-dark-muted"}`}>{SHOW_PRICES ? priceLabel(plan) : plan.agents}</p>
+          {!SHOW_PRICES && <>
+            <p className="mt-3 text-sm text-on-dark-muted">Start free with Amy · 14 days · No credit card required</p>
+            <Button asChild variant="secondary" className="mt-4 w-full rounded-full font-bold">
+              <Link to="/free-trial" search={{ plan: planId, pains: on.join(",") }}>Start Free With Amy <ArrowRight size={16} /></Link>
+            </Button>
+          </>}
         </motion.div>
       </AnimatePresence>
-      <Link to="/free-trial" search={{ plan: planId, pains: on.join(",") }} className="flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-soft transition hover:-translate-y-0.5 hover:bg-primary-deep">
+      {SHOW_PRICES && <Link to="/free-trial" search={{ plan: planId, pains: on.join(",") }} className="flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground shadow-soft transition hover:-translate-y-0.5 hover:bg-primary-deep">
         Book a Free Trial with This Setup
-      </Link>
+      </Link>}
       <p className="text-sm text-muted-foreground">Prefer not to set it up yourself? Share your information and our team configures everything — the <s>$1,000</s> setup is waived during launch.</p>
     </div>
   );
@@ -68,8 +74,8 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
           <p className="eyebrow">Build Your AI Front Office</p>
           <Heading className="text-4xl font-extrabold md:text-5xl">Choose the Problems You Want Solved.</Heading>
           <div className="mt-6 flex flex-wrap gap-2">
-            {([["receptionist", "Receptionist"], ["pro", "Pro"], ["full", "Elite"]] as const).map(([id, label]) => (
-              <Button key={id} variant="outline" className="rounded-full font-bold" onClick={() => setOn(presetIds(id))}>{label}</Button>
+            {PLANS.map((p) => (
+              <Button key={p.id} variant="outline" className="rounded-full font-bold" onClick={() => setOn(presetIds(p.id))}>{p.name}</Button>
             ))}
           </div>
         </div>

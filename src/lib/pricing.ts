@@ -1,22 +1,20 @@
-export const SHOW_PRICES = false;
+import { PLANS as PRICING_CONFIG, SHOW_PRICES } from "@/config/pricing";
+
+export { SHOW_PRICES };
 
 export type Billing = "monthly" | "yearly";
 
 export const PLANS = [
   {
     id: "receptionist",
-    name: "Receptionist",
-    monthly: 497,
-    yearly: 437,
+    ...PRICING_CONFIG.receptionist,
     popular: false,
     blurb: "Amy answers every call, day and night.",
     features: ["Amy, your AI receptionist (1 AI employee)", "24/7 calls & booking", "Your instant test call"],
   },
   {
     id: "pro",
-    name: "Pro",
-    monthly: 1997,
-    yearly: 1757,
+    ...PRICING_CONFIG.pro,
     popular: true,
     blurb: "4 AI employees: Amy, Leena, Stephanie, Trisha.",
     features: [
@@ -28,9 +26,7 @@ export const PLANS = [
   },
   {
     id: "full",
-    name: "Elite",
-    monthly: 2997,
-    yearly: 2637,
+    ...PRICING_CONFIG.elite,
     popular: false,
     blurb: "All 8 AI employees, every pain point covered.",
     features: ["All 8 AI employees", "Every pain point covered", "Dedicated onboarding"],
@@ -44,3 +40,7 @@ export function priceFor(planId: string, billing: Billing): number {
 }
 
 export const formatUSD = (n: number) => `$${n.toLocaleString("en-US")}`;
+
+export function priceLabel(plan: { monthly: number; yearly: number }): string {
+  return SHOW_PRICES ? `${formatUSD(plan.monthly)}/mo or ${formatUSD(plan.yearly)}/mo yearly` : "";
+}

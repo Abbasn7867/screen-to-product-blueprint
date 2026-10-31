@@ -6,8 +6,6 @@ import { CtaButton, Reveal } from "@/components/site";
 import { OfferLine } from "@/components/site-offers";
 import { PLANS, SHOW_PRICES, formatUSD, priceFor, type Billing } from "@/lib/pricing";
 
-const QUARTERLY: Record<string, number> = { receptionist: 1311, pro: 5271, full: 7911 };
-
 const TRIAL_STEPS = [
   <>Try Amy free — 14 days of the Receptionist plan. No credit card required.</>,
   <>Activate Receptionist → try Pro free for 14 days.</>,
@@ -38,7 +36,7 @@ function LaunchCard() {
         {PLANS.map((p) => (
           <li key={p.id} className="rounded-xl border border-on-dark-muted/30 p-4">
             <p className="font-extrabold">{p.name}</p>
-            <p className="mt-1 text-xs text-on-dark-muted">{p.blurb}</p>
+            <p className="mt-1 text-xs text-on-dark-muted">{p.agents}</p>
           </li>
         ))}
       </ul>
@@ -104,7 +102,7 @@ export function PricingPlans({ heading = true }: { heading?: boolean }) {
                   </p>
                   <p className={`text-sm ${p.popular ? "text-on-dark-muted" : "text-muted-foreground"}`}>
                     {billing === "yearly"
-                      ? `12-month agreement, billed quarterly (${formatUSD(QUARTERLY[p.id] ?? 0)} per quarter)`
+                      ? `12-month agreement, billed quarterly (${formatUSD(p.quarterly)} per quarter)`
                       : "Billed monthly"}
                   </p>
                   <ul className="mt-6 flex-1 space-y-3">
