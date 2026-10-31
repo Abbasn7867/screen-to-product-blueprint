@@ -194,6 +194,7 @@ body {padding-bottom:var(--offer-space);}
 .hero-subhead {font-size:17px;line-height:1.7;color:var(--muted-foreground);margin-top:22px;max-width:550px;}
 .hero-live {position:absolute;left:16px;right:16px;bottom:16px;transform:perspective(1200px) rotateY(var(--mouse-x,0deg)) rotateX(var(--mouse-y,0deg));transition:transform .3s ease;}
 .hero-notifications {position:absolute;inset:0;pointer-events:none;}
+@media(min-width:1024px) {.hero-live .hero-notifications {left:-150px;right:auto;width:260px;bottom:40px;top:auto;height:auto;}}
 .hero-notification {position:absolute;display:flex;align-items:center;gap:7px;padding:12px 15px;font-size:11px;font-weight:700;border-radius:8px;animation:float-y 6s ease-in-out infinite;}
 .notification-0 {top:-36px;left:-24px;}
 .notification-1 {top:55px;right:-18px;animation-delay:.8s;}
