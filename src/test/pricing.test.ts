@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { priceFor } from "@/lib/pricing";
+import { PLANS, priceFor } from "@/lib/pricing";
 
 describe("pricing", () => {
   it("monthly prices", () => {
@@ -13,8 +13,8 @@ describe("pricing", () => {
     expect(priceFor("full", "yearly")).toBe(2637);
   });
   it("yearly billed quarterly = 3x monthly", () => {
-    expect(437 * 3).toBe(1311);
-    expect(1757 * 3).toBe(5271);
-    expect(2637 * 3).toBe(7911);
+    expect(PLANS.find((p) => p.id === "receptionist")?.quarterly).toBe(1311);
+    expect(PLANS.find((p) => p.id === "pro")?.quarterly).toBe(5271);
+    expect(PLANS.find((p) => p.id === "full")?.quarterly).toBe(7911);
   });
 });
