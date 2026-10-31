@@ -11,6 +11,6 @@
 - [x] Page update: footer disclaimer line
 - [x] Verify 375/768/1440px: no overflow, photos framed, no prices when SHOW_PRICES false
 - [x] Day Timeline: 80/20 cards (photo left, agent column right), fix clipped name, mobile stack, check 375/768/1024/1440
-- [x] Intro video: YouTube embed in hero lightbox + 16:9 card, muted autoplay, captions on, Esc closes; transcript toggle removed
+- [x] Intro video: YouTube embed in hero lightbox + 16:9 card, muted autoplay, captions on, Esc closes; transcript toggle removed; title set to real length (video is 2:02)
 - [ ] GHL webhook secret (user must paste URL — form cancelled; ask again)
 - [ ] Published Chrome frosting check (blocked until user requests publication)
