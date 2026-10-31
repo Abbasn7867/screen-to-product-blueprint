@@ -8,7 +8,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { LegalLinks, SiteFooter, SiteHeader, TrustBadges } from "@/components/site";
 import { Button } from "@/components/ui/button";
 import { CATEGORIES } from "@/data/painPoints";
-import { PLANS, formatUSD, priceFor, type Billing } from "@/lib/pricing";
+import { PLANS, SHOW_PRICES, formatUSD, priceFor, type Billing } from "@/lib/pricing";
 import { CONSENT_MARKETING, CONSENT_SMS, formatUSPhone, leadFormSchema, type LeadForm } from "@/lib/lead-schema";
 import { readAttribution } from "@/lib/attribution";
 import { submitLead } from "@/lib/leads.functions";
@@ -182,12 +182,15 @@ function FreeTrial() {
                           {PLANS.map((p) => <button type="button" role="radio" aria-checked={field.value === p.id} key={p.id} onClick={() => field.onChange(p.id)} className={`rounded-xl border px-2 py-2 text-sm font-bold ${field.value === p.id ? "border-primary bg-primary text-primary-foreground" : "border-input"}`}>{p.name}</button>)}
                         </div>
                       )} />
-                      <Controller control={control} name="billing" render={({ field }) => (
+                      {SHOW_PRICES && <Controller control={control} name="billing" render={({ field }) => (
                         <div className="mt-3 inline-flex rounded-full bg-muted p-1" role="radiogroup" aria-label="Billing period">
-                          {(["monthly", "yearly"] as const).map((b) => <button type="button" role="radio" aria-checked={field.value === b} key={b} onClick={() => field.onChange(b)} className={`rounded-full px-4 py-1.5 text-sm font-bold capitalize ${field.value === b ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>{b}</button>)}
+                          {(["monthly", "yearly"] as const).map((b) => <Button type="button" variant="ghost" role="radio" aria-checked={field.value === b} key={b} onClick={() => field.onChange(b)} className={`rounded-full px-4 py-1.5 text-sm font-bold ${field.value === b ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>{b === "yearly" ? "Yearly · Save 12%" : "Monthly"}</Button>)}
                         </div>
-                      )} />
-                      <p className="mt-3"><strong className="text-2xl">{formatUSD(priceFor(plan, billing))}</strong>/month{billing === "yearly" && <span className="text-sm text-muted-foreground"> · billed yearly</span>}</p>
+                      )} />}
+                      {SHOW_PRICES ? <>
+                        <p className="mt-3"><strong className="text-2xl">{formatUSD(priceFor(plan, billing))}</strong>/month</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{billing === "yearly" ? `12-month agreement, billed quarterly (${formatUSD(PLANS.find((p) => p.id === plan)?.quarterly ?? 0)} per quarter)` : "Billed monthly"}</p>
+                      </> : <p className="mt-3 text-sm text-muted-foreground">{PLANS.find((p) => p.id === plan)?.agents}</p>}
                     </div>
                     <label className="flex gap-3 text-sm"><input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-primary" {...register("consent_sms_account")} /><span>{CONSENT_SMS}</span></label>
                     <label className="flex gap-3 text-sm"><input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-primary" {...register("consent_marketing")} /><span>{CONSENT_MARKETING}</span></label>

@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Single pricing switch: central config, selector and trial price visibility, verify both states and restore hidden mode
+
 - [x] Configurator + /pricing page
 - [x] Funnel: 4-step free-trial, leads table, thank-you, attribution, analytics events
 - [ ] Page update: person-photo cropping fix (shared .person-photo class, aspect boxes, 4 viewports)
