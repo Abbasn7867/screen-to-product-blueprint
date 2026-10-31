@@ -217,7 +217,10 @@ body {padding-bottom:var(--offer-space);}
 .waveform span:nth-child(3n) {animation-delay:.6s;}
 @keyframes wave {from {transform:scaleY(.3);}to {transform:scaleY(1);}}
 .transcript {height:345px;overflow:auto;padding:18px 24px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;}
-.compact-call .transcript {height:220px;padding-inline:20px;}
+.compact-call .transcript {height:110px;padding:10px 20px;}
+.compact-call .call-top {padding:12px 18px;}
+.compact-call .call-bottom {padding:9px 14px;}
+.compact-call .waveform {padding-block:6px;}
 .transcript-line {max-width:88%;padding:11px 14px;font-size:13px;line-height:1.65;border-radius:8px;}
 .transcript-line strong {display:block;font-size:10px;margin-bottom:3px;}
 .amy-line {align-self:flex-end;background:var(--secondary);color:var(--foreground);}
