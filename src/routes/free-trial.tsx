@@ -24,7 +24,7 @@ export const Route = createFileRoute("/free-trial")({
   head: () => ({
     meta: [
       { title: "Book a Free Trial | AI Solution Company for Medical Practices" },
-      { name: "description", content: "Start your 14-day free trial of the full platform. $0 setup (was $1,000), $250 bonus credits and an instant test call in 3–4 minutes." },
+      { name: "description", content: "Start your 14-day free trial of the full platform. $0 setup (was $1,000), $250 in free credits and an instant test call in 3–4 minutes. No credit card required." },
       { property: "og:title", content: "Start Your 14-Day Free Trial of the Full Platform" },
       { property: "og:description", content: "14 days of the complete AI front office for your medical practice. $0 setup during launch." },
       { property: "og:type", content: "website" },
@@ -106,7 +106,7 @@ function FreeTrial() {
             <h1 className="text-4xl font-extrabold leading-tight md:text-5xl">Start Your 14-Day Free Trial of the <span className="text-gradient">Full Platform</span></h1>
             <div className="mt-8 rounded-[1.5rem] bg-accent-soft p-6">
               <ul className="space-y-3 font-semibold">
-                {[<>$0 setup (was <s>$1,000</s>)</>, <>$250 bonus credits</>, <>Instant test call in 3–4 minutes</>].map((t, i) => (
+                {[<>$0 setup (was <s>$1,000</s>)</>, <>+$250 in free credits</>, <>Instant test call in 3–4 minutes</>].map((t, i) => (
                   <li key={i} className="flex gap-3"><Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" /><span>{t}</span></li>
                 ))}
               </ul>

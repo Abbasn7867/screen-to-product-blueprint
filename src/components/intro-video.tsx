@@ -55,7 +55,7 @@ export function IntroVideoSection() {
         <div className="video-card">
           {playing ? <Player autoPlay /> : (
             <button type="button" className="video-poster" onClick={() => setPlaying(true)} aria-label={`Play: ${TITLE}`}>
-              <img src={amyScene} alt="" loading="lazy" />
+              <img src={amyScene} alt="" loading="lazy" className="person-photo" style={{'--focus':'50% 30%'} as React.CSSProperties} />
               <span className="video-poster-shade" />
               <img src={logo.url} alt="" className="video-poster-logo" loading="lazy" />
               <span className="video-play"><Play size={34} /></span>
