@@ -10,4 +10,4 @@
 - [ ] Verify 375/768/1440px: no overflow, photos framed, no prices when SHOW_PRICES false
 - [ ] GHL webhook secret (user must paste URL — form cancelled; ask again)
 - [ ] Published Chrome frosting check (blocked until user requests publication)
-- [ ] Day Timeline: 80/20 cards (photo left, agent column right), fix clipped name, mobile stack, check 375/768/1024/1440
+- [x] Day Timeline: 80/20 cards (photo left, agent column right), fix clipped name, mobile stack, check 375/768/1024/1440
