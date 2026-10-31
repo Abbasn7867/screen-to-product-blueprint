@@ -1,3 +1,5 @@
+export const SHOW_PRICES = false;
+
 export type Billing = "monthly" | "yearly";
 
 export const PLANS = [
@@ -8,15 +10,15 @@ export const PLANS = [
     yearly: 437,
     popular: false,
     blurb: "Amy answers every call, day and night.",
-    features: ["Amy, your AI receptionist", "24/7 calls & booking", "Your instant test call"],
+    features: ["Amy, your AI receptionist (1 AI employee)", "24/7 calls & booking", "Your instant test call"],
   },
   {
     id: "pro",
     name: "Pro",
-    monthly: 1497,
-    yearly: 1317,
+    monthly: 1997,
+    yearly: 1757,
     popular: true,
-    blurb: "Amy plus scheduling, follow-up and reporting.",
+    blurb: "4 AI employees: Amy, Leena, Stephanie, Trisha.",
     features: [
       "Everything in Receptionist",
       "Leena — schedule optimization",
@@ -26,9 +28,9 @@ export const PLANS = [
   },
   {
     id: "full",
-    name: "Full Team",
-    monthly: 1997,
-    yearly: 1757,
+    name: "Elite",
+    monthly: 2997,
+    yearly: 2637,
     popular: false,
     blurb: "All 8 AI employees, every pain point covered.",
     features: ["All 8 AI employees", "Every pain point covered", "Dedicated onboarding"],

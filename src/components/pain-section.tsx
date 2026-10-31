@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check, ChevronDown } from 'lucide-react';
-import { CATEGORIES } from '@/data/painPoints';
+import { CATEGORIES, PAIN_COUNT } from '@/data/painPoints';
 import { AGENT_PORTRAITS } from '@/lib/agent-portraits';
 import { agentFor, AGENT_KEYS, CATEGORY_ICONS, CATEGORY_PHOTOS } from '@/lib/medical-presentation';
 import { Button } from '@/components/ui/button';
@@ -16,7 +16,7 @@ export function PainSection() {
  const reduce=useReducedMotion();
  useEffect(()=>{const m=matchMedia('(max-width: 767px)');const change=()=>setMobile(m.matches);change();m.addEventListener('change',change);return ()=>m.removeEventListener('change',change);},[]);
  return <section id="problems" className="pain-section section-space scroll-mt-32"><div className="page-width">
- <div className="section-heading"><p className="eyebrow">Sound Familiar?</p><h2>34 Problems.<br/><span className="text-gradient">One Front Office.</span></h2><div className="category-counts"><span><strong>34</strong> problems</span><span><strong>8</strong> AI employees</span><span><strong>1</strong> front office</span></div></div>
+ <div className="section-heading"><p className="eyebrow">Sound Familiar?</p><h2>{PAIN_COUNT} Problems.<br/><span className="text-gradient">One Front Office.</span></h2><div className="category-counts"><span><strong>{PAIN_COUNT}</strong> problems</span><span><strong>8</strong> AI employees</span><span><strong>1</strong> front office</span></div></div>
  <div className="pain-bento">{CATEGORIES.map((category,i)=>{
  const Icon=CATEGORY_ICONS[i] ?? CATEGORY_ICONS[0];
  const expanded=!mobile||open.includes(category.id);

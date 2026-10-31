@@ -68,7 +68,7 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
           <p className="eyebrow">Build Your AI Front Office</p>
           <Heading className="text-4xl font-extrabold md:text-5xl">Choose the Problems You Want Solved.</Heading>
           <div className="mt-6 flex flex-wrap gap-2">
-            {([["receptionist", "Receptionist"], ["pro", "Pro"], ["full", "Everything"]] as const).map(([id, label]) => (
+            {([["receptionist", "Receptionist"], ["pro", "Pro"], ["full", "Elite"]] as const).map(([id, label]) => (
               <Button key={id} variant="outline" className="rounded-full font-bold" onClick={() => setOn(presetIds(id))}>{label}</Button>
             ))}
           </div>
