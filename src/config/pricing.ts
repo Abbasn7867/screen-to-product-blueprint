@@ -1,4 +1,4 @@
-export const SHOW_PRICES = true;
+export const SHOW_PRICES = false;
 
 export const PLANS = {
   receptionist: { name: "Receptionist", agents: "Amy, your AI receptionist", monthly: 497, yearly: 437, quarterly: 1311 },
