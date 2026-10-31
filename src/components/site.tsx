@@ -51,7 +51,7 @@ export function SiteHeader() {
   const [menu,setMenu]=useState(false);
   const links=[["Problems","problems"],["AI Team","team"],["Test Call","test-call"],["Pricing","pricing"],["FAQ","faq"]];
   return <header className="site-header">
-    {announcement && <div className="announcement bg-signature text-on-dark"><p>Launch offer: 14-day free trial · Setup <s>$1,000</s> <strong>$0</strong> · +$250 bonus credits</p><a href="/free-trial" className="font-bold underline underline-offset-4">Book a Free Trial →</a><Button variant="ghost" size="icon" aria-label="Dismiss announcement" className="announcement-close hover:bg-primary/20 hover:text-on-dark" onClick={()=>setAnnouncement(false)}><X size={15}/></Button></div>}
+    {announcement && <div className="announcement bg-signature text-on-dark"><p>Launch offer: 14-day free trial · No credit card required · Setup <s>$1,000</s> <strong>$0</strong> · +$250 in free credits</p><a href="/free-trial" className="font-bold underline underline-offset-4">Book a Free Trial →</a><Button variant="ghost" size="icon" aria-label="Dismiss announcement" className="announcement-close hover:bg-primary/20 hover:text-on-dark" onClick={()=>setAnnouncement(false)}><X size={15}/></Button></div>}
     <div className="navigation glass"><Link to="/" aria-label="AI Solution Company home"><Logo className="h-8 md:h-9"/></Link><nav aria-label="Main" className="hidden lg:flex items-center gap-6 text-sm font-semibold text-muted-foreground">{links.map(([label,id])=><a key={id} href={`/#${id}`} className="hover:text-primary">{label}</a>)}</nav><div className="flex items-center gap-2"><CtaButton size="sm"/><Button variant="ghost" size="icon" aria-label="Toggle navigation" aria-expanded={menu} onClick={()=>setMenu(v=>!v)} className="lg:hidden">{menu?<X size={20}/>:<Menu size={20}/>}</Button></div></div>
     {menu&&<nav aria-label="Mobile navigation" className="mobile-navigation glass">{links.map(([label,id])=><a key={id} href={`/#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}</nav>}
   </header>;
@@ -128,7 +128,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <p className="border-t py-5 text-center text-xs text-muted-foreground">
-        © AI Solution Company
+        © AI Solution Company<span className="mt-1 block text-xs opacity-70">AI Employees and people shown are AI-generated characters. Any resemblance to real persons is unintended.</span>
       </p>
     </footer>
   );
