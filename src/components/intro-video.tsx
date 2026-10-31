@@ -4,8 +4,13 @@ import { Button } from '@/components/ui/button';
 import amyScene from '@/assets/amy-medical-scene-silver.jpg';
 import logo from '@/assets/aisc-logo.png.asset.json';
 
-// Replace with the real intro video, captions file and length when available.
-export const INTRO_VIDEO = { src: '', captions: '', seconds: 60 };
+// The real intro video, hosted on YouTube. Captions are switched on by the player.
+export const INTRO_VIDEO = {
+  youtubeId: 'Bc2ZzYFr9BU',
+  seconds: 60,
+  watchUrl: 'https://www.youtube.com/watch?v=Bc2ZzYFr9BU',
+};
+
 const TITLE = `Meet Your AI Front Office in ${INTRO_VIDEO.seconds} Seconds`;
 const TRANSCRIPT = [
   'Every patient call answered. Every visit booked.',
@@ -14,13 +19,33 @@ const TRANSCRIPT = [
   'Your team stays focused on the patients in front of them.',
 ];
 
+function embedUrl(autoPlay: boolean) {
+  const params = new URLSearchParams({
+    rel: '0',
+    modestbranding: '1',
+    playsinline: '1',
+    cc_load_policy: '1',
+    cc_lang_pref: 'en',
+    hl: 'en',
+  });
+  if (autoPlay) {
+    params.set('autoplay', '1');
+    params.set('mute', '1');
+  }
+  return `https://www.youtube-nocookie.com/embed/${INTRO_VIDEO.youtubeId}?${params.toString()}`;
+}
+
 function Player({ autoPlay }: { autoPlay?: boolean }) {
-  if (!INTRO_VIDEO.src) return <div className="video-missing">Intro video coming soon</div>;
   return (
-    <video className="h-full w-full" controls muted={autoPlay} autoPlay={autoPlay} playsInline preload={autoPlay ? 'auto' : 'none'} poster={amyScene}>
-      <source src={INTRO_VIDEO.src} />
-      {INTRO_VIDEO.captions && <track kind="captions" src={INTRO_VIDEO.captions} srcLang="en" label="English" default />}
-    </video>
+    <iframe
+      className="h-full w-full"
+      src={embedUrl(!!autoPlay)}
+      title={TITLE}
+      loading={autoPlay ? 'eager' : 'lazy'}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
   );
 }
 
@@ -29,8 +54,13 @@ export function WatchIntroButton() {
   useEffect(() => {
     if (!open) return;
     const k = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', k);
-    return () => window.removeEventListener('keydown', k);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', k);
+    };
   }, [open]);
   return (
     <>
