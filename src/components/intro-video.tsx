@@ -12,12 +12,6 @@ export const INTRO_VIDEO = {
 };
 
 const TITLE = `Meet Your AI Front Office in ${INTRO_VIDEO.seconds} Seconds`;
-const TRANSCRIPT = [
-  'Every patient call answered. Every visit booked.',
-  'Meet Amy, your AI receptionist, and the AI Front Office team: 8 AI employees that answer, book, follow up and report for your practice, 24/7.',
-  'Book a Free Trial, then get set up in minutes with the Setup Wizard.',
-  'Your team stays focused on the patients in front of them.',
-];
 
 function embedUrl(autoPlay: boolean) {
   const params = new URLSearchParams({
@@ -77,7 +71,6 @@ export function WatchIntroButton() {
 
 export function IntroVideoSection() {
   const [playing, setPlaying] = useState(false);
-  const [transcript, setTranscript] = useState(false);
   return (
     <section id="intro-video" className="section-space bg-card">
       <div className="page-width">
@@ -92,10 +85,6 @@ export function IntroVideoSection() {
               <strong className="video-poster-title">{TITLE}</strong>
             </button>
           )}
-        </div>
-        <div className="mt-5 text-center">
-          <Button variant="link" aria-expanded={transcript} aria-controls="intro-transcript" onClick={() => setTranscript((t) => !t)}>{transcript ? 'Hide the Transcript' : 'Read the Transcript'}</Button>
-          {transcript && <div id="intro-transcript" className="mx-auto mt-3 max-w-2xl space-y-2 text-left text-muted-foreground">{TRANSCRIPT.map((l) => <p key={l}>{l}</p>)}</div>}
         </div>
       </div>
     </section>
