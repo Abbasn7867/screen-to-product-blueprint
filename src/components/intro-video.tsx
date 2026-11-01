@@ -7,12 +7,15 @@ import logo from '@/assets/aisc-logo.png.asset.json';
 // The real intro video, hosted on YouTube. Captions are switched on by the player.
 export const INTRO_VIDEO = {
   youtubeId: 'Bc2ZzYFr9BU',
-  seconds: 120,
+  seconds: 60,
   watchUrl: 'https://www.youtube.com/watch?v=Bc2ZzYFr9BU',
 };
 
-const LENGTH = INTRO_VIDEO.seconds >= 60 ? `${Math.round(INTRO_VIDEO.seconds / 60)} Minutes` : `${INTRO_VIDEO.seconds} Seconds`;
-const TITLE = `Meet Your AI Front Office in ${LENGTH}`;
+// Under a full minute (and exactly one minute) reads in seconds; longer reads in whole minutes.
+const LENGTH = INTRO_VIDEO.seconds > 60 && INTRO_VIDEO.seconds % 60 === 0
+  ? `${INTRO_VIDEO.seconds / 60} Minutes`
+  : `${INTRO_VIDEO.seconds} Seconds`;
+export const TITLE = `Meet Your AI Front Office in ${LENGTH}`;
 
 function embedUrl(autoPlay: boolean) {
   const params = new URLSearchParams({
