@@ -45,7 +45,7 @@ export function RecordedCallPlayer() {
 
   return <div ref={card} className="call-player recorded-call">
     <div className="call-top">
-      <img src={AGENT_PORTRAITS.Amy} alt="Amy, AI Receptionist" className="call-avatar person-photo pulse-ring shrink-0" loading="lazy" width="64" height="64"/>
+      <img src={AGENT_PORTRAITS['Amy']} alt="Amy, AI Receptionist" className="call-avatar person-photo pulse-ring shrink-0" loading="lazy" width="64" height="64"/>
       <div className="min-w-0"><p className="font-extrabold">Amy <span className="text-sm font-medium text-muted-foreground">· Receptionist</span></p><p className="mt-1 text-xs text-muted-foreground">Same-day sick visit · 2:06</p></div>
     </div>
     <audio ref={audio} src={RECORDED_CALL.src} preload="none" muted={muted}
@@ -60,7 +60,7 @@ export function RecordedCallPlayer() {
       </div>
       <Slider className="mt-5 min-h-8" aria-label="Recorded call progress" min={0} max={duration} step={0.1} value={[elapsed]} onValueChange={v => seek(v[0] ?? 0)}/>
       <div className="flex items-center justify-between gap-2">
-        <span className="text-sm font-mono tabular-nums text-muted-foreground" aria-label="Playback time">{audioTime(elapsed)} / {audioTime(duration)}</span>
+        <span className="text-sm font-mono tabular-nums text-muted-foreground" aria-label="Playback time">{audioTime(elapsed)} / {audioTime(Math.ceil(duration))}</span>
         <div className="flex gap-1"><Button variant="ghost" size="icon" className="h-11 w-11" aria-label="Restart recorded call" title="Restart recorded call" onClick={() => seek(0)}><RotateCcw size={18}/></Button><Button variant="ghost" size="icon" className="h-11 w-11" aria-label={muted ? 'Unmute recorded call' : 'Mute recorded call'} title={muted ? 'Unmute recorded call' : 'Mute recorded call'} onClick={() => setMuted(m => !m)}>{muted ? <VolumeX size={18}/> : <Volume2 size={18}/>}</Button></div>
       </div>
     </div>}
