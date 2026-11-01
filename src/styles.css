@@ -223,6 +223,9 @@ body {padding-bottom:var(--offer-space);}
 .compact-call .waveform {padding-block:6px;}
 .transcript-line {max-width:88%;padding:11px 14px;font-size:13px;line-height:1.65;border-radius:8px;}
 .transcript-line strong {display:block;font-size:10px;margin-bottom:3px;}
+.recorded-call .recorded-transcript {height:auto;max-height:none;overflow:visible;}
+.recorded-transcript .transcript-line {min-width:0;overflow-wrap:anywhere;}
+.recorded-call .waveform {padding-inline:0;gap:3px;}
 .amy-line {align-self:flex-end;background:var(--secondary);color:var(--foreground);}
 .caller-line {align-self:flex-start;background:var(--muted);color:var(--muted-foreground);}
 .call-bottom {display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 20px;border-top:1px solid var(--border);}
