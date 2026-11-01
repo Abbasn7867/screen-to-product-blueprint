@@ -5,6 +5,11 @@ import { RecordedCallPlayer } from '@/components/recorded-call-player';
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 function observerMock() {
+  vi.stubGlobal('ResizeObserver', class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  });
   let notify: IntersectionObserverCallback | undefined;
   vi.stubGlobal('IntersectionObserver', class {
     constructor(callback: IntersectionObserverCallback) { notify = callback; }

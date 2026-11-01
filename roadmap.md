@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Hear Amy in Action: single recording, exact transcript, playback controls, offscreen pause and mobile verification
+- [x] Hear Amy in Action: single recording, exact transcript, playback controls, offscreen pause and mobile verification
 
 - [x] Single pricing switch: central config, selector and trial price visibility, verify both states and restore hidden mode
 
