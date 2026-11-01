@@ -7,7 +7,7 @@ import logo from '@/assets/aisc-logo.png.asset.json';
 // The real intro video, hosted on YouTube. Captions are switched on by the player.
 export const INTRO_VIDEO = {
   youtubeId: 'Bc2ZzYFr9BU',
-  seconds: 120,
+  seconds: 60,
   watchUrl: 'https://www.youtube.com/watch?v=Bc2ZzYFr9BU',
 };
 
