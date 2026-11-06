@@ -2,7 +2,7 @@ export const RECORDED_CALL = {
   src: '/audio/medical-sick-visit-call.mp3',
   seconds: 126,
   lines: [
-    ['Annie', 'Thank you for calling Cedar Ridge Family Medicine. This is Amy. How can I help you today?'],
+    ['Annie', 'Thank you for calling Cedar Ridge Family Medicine. This is Annie. How can I help you today?'],
     ['Caller', "Hey there. So, I've had this cough for about a week and I'd like to get it checked. First off, can I get a same-day appointment?"],
     ['Annie', 'Yes. We hold time for same-day sick visits. We have an opening today at 3:15 PM.'],
     ['Caller', "Okay, good. That's a relief. Quick one, should I be worried about the cough?"],
