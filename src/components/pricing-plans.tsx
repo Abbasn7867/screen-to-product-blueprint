@@ -7,7 +7,7 @@ import { OfferLine } from "@/components/site-offers";
 import { PLANS, SHOW_PRICES, formatUSD, priceFor, type Billing } from "@/lib/pricing";
 
 const TRIAL_STEPS = [
-  <>Try Amy free — 14 days of the Receptionist plan. No credit card required.</>,
+  <>Try Annie free — 14 days of the Receptionist plan. No credit card required.</>,
   <>Activate Receptionist → try Pro free for 14 days.</>,
   <>Activate Pro → try Elite free for 14 days.</>,
 ];
@@ -28,10 +28,10 @@ export function TrialSteps() {
 function LaunchCard() {
   return (
     <div className="mx-auto mt-12 max-w-2xl rounded-[2rem] bg-dark-section p-10 text-center text-on-dark shadow-soft">
-      <h3 className="text-3xl font-extrabold">Start With Amy — Free for 14 Days</h3>
+      <h3 className="text-3xl font-extrabold">Start With Annie — Free for 14 Days</h3>
       <p className="mt-4 text-5xl font-extrabold">$0 <span className="text-xl font-bold text-on-dark-muted">for 14 days</span></p>
       <p className="mt-3 font-semibold text-on-dark-muted">No credit card required · +$250 in free credits · Setup $1,000 → $0</p>
-      <CtaButton variant="light" size="lg" className="mt-8">Start Free With Amy <ArrowRight size={18} /></CtaButton>
+      <CtaButton variant="light" size="lg" className="mt-8">Start Free With Annie <ArrowRight size={18} /></CtaButton>
       <ul className="mt-8 grid gap-3 text-left sm:grid-cols-3">
         {PLANS.map((p) => (
           <li key={p.id} className="rounded-xl border border-on-dark-muted/30 p-4">
@@ -51,7 +51,7 @@ export function PricingPlans({ heading = true }: { heading?: boolean }) {
 
       <div className="relative mx-auto max-w-6xl">
         <Reveal className="text-center">
-          {heading && <><h2 className="text-4xl font-extrabold md:text-6xl">Simple Plans. Start Free With Amy.</h2>
+          {heading && <><h2 className="text-4xl font-extrabold md:text-6xl">Simple Plans. Start Free With Annie.</h2>
           <TrialSteps /></>}
           {SHOW_PRICES && (
             <div role="radiogroup" aria-label="Billing period" className="mx-auto mt-8 inline-flex rounded-full bg-card p-1.5 shadow-soft">

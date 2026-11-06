@@ -45,8 +45,8 @@ export function RecordedCallPlayer() {
 
   return <div ref={card} className="call-player recorded-call">
     <div className="call-top">
-      <img src={AGENT_PORTRAITS['Amy']} alt="Amy, AI Receptionist" className="call-avatar person-photo pulse-ring shrink-0" loading="lazy" width="64" height="64"/>
-      <div className="min-w-0"><p className="font-extrabold">Amy <span className="text-sm font-medium text-muted-foreground">· Receptionist</span></p><p className="mt-1 text-xs text-muted-foreground">Same-day sick visit · 2:06</p></div>
+      <img src={AGENT_PORTRAITS['Annie']} alt="Annie, AI Receptionist" className="call-avatar person-photo pulse-ring shrink-0" loading="lazy" width="64" height="64"/>
+      <div className="min-w-0"><p className="font-extrabold">Annie <span className="text-sm font-medium text-muted-foreground">· Receptionist</span></p><p className="mt-1 text-xs text-muted-foreground">Same-day sick visit · 2:06</p></div>
     </div>
     <audio ref={audio} src={RECORDED_CALL.src} preload="none" muted={muted}
       onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} onWaiting={() => setPlaying(false)}
@@ -65,6 +65,6 @@ export function RecordedCallPlayer() {
       </div>
     </div>}
     <div className="border-t border-border px-4 py-3 sm:px-6"><Button variant="ghost" aria-expanded={open} aria-controls="recorded-call-transcript" onClick={() => setOpen(o => !o)} className="gap-2">Read the transcript <ChevronDown size={16} className={open ? 'rotate-180' : ''}/></Button></div>
-    {open && <div id="recorded-call-transcript" className="transcript recorded-transcript">{RECORDED_CALL.lines.map(([speaker, text], i) => <div key={i} className={`transcript-line ${speaker === 'Amy' ? 'amy-line' : 'caller-line'}`}><strong>{speaker}</strong><p>{text}</p></div>)}</div>}
+    {open && <div id="recorded-call-transcript" className="transcript recorded-transcript">{RECORDED_CALL.lines.map(([speaker, text], i) => <div key={i} className={`transcript-line ${speaker === 'Annie' ? 'amy-line' : 'caller-line'}`}><strong>{speaker}</strong><p>{text}</p></div>)}</div>}
   </div>;
 }

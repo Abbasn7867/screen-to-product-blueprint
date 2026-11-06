@@ -53,9 +53,9 @@ export function Configurator({ standalone = false }: { standalone?: boolean }) {
           <p className="text-2xl font-extrabold">{plan.name}</p>
           <p className={`mt-1 ${SHOW_PRICES ? "text-xl font-bold" : "text-sm text-on-dark-muted"}`}>{SHOW_PRICES ? priceLabel(plan) : plan.agents}</p>
           {!SHOW_PRICES && <>
-            <p className="mt-3 text-sm text-on-dark-muted">Start free with Amy · 14 days · No credit card required</p>
+            <p className="mt-3 text-sm text-on-dark-muted">Start free with Annie · 14 days · No credit card required</p>
             <Button asChild variant="secondary" className="mt-4 w-full rounded-full font-bold">
-              <Link to="/free-trial" search={{ plan: planId, pains: on.join(",") }}>Start Free With Amy <ArrowRight size={16} /></Link>
+              <Link to="/free-trial" search={{ plan: planId, pains: on.join(",") }}>Start Free With Annie <ArrowRight size={16} /></Link>
             </Button>
           </>}
         </motion.div>

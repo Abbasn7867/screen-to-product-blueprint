@@ -93,7 +93,7 @@ function ThankYou() {
               );
             })}
           </ol>
-          <p className="mt-6 text-muted-foreground">Then your practice gets its own booking line, and our test caller rings Amy. The call is recorded, and the recording appears on your dashboard and is emailed to you within 3–4 minutes.</p>
+          <p className="mt-6 text-muted-foreground">Then your practice gets its own booking line, and our test caller rings Annie. The call is recorded, and the recording appears on your dashboard and is emailed to you within 3–4 minutes.</p>
           <a href={MAILTO} onClick={pause} className="mt-6 inline-block text-sm font-semibold text-primary underline underline-offset-4">
             Prefer not to set it up yourself? Share your information and our team configures everything — the <s>$1,000</s> setup is waived during launch.
           </a>
