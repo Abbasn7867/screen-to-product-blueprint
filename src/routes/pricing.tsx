@@ -10,7 +10,7 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing | AI Front Office for Medical Practices" },
-      { name: "description", content: "Receptionist, Pro and Elite plans. Try Amy free for 14 days — no credit card required, setup $0 during launch and $250 in free credits." },
+      { name: "description", content: "Receptionist, Pro and Elite plans. Try Annie free for 14 days — no credit card required, setup $0 during launch and $250 in free credits." },
       { property: "og:title", content: "Simple Pricing. The Full Platform, Free for 14 Days." },
       { property: "og:description", content: "Compare plans for your medical practice's AI front office." },
       { property: "og:type", content: "website" },

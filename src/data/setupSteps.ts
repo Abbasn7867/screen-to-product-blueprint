@@ -6,7 +6,7 @@ export const SETUP_STEPS: { title: string; optional?: boolean }[] = [
   { title: 'Which Services Do You Offer?' },
   { title: 'Your Exam Rooms' },
   { title: 'Insurance and Payments' },
-  { title: 'How Should Amy Answer?' },
+  { title: 'How Should Annie Answer?' },
   { title: 'Invite Your Team', optional: true },
   { title: 'Connect Your Scheduling Software', optional: true },
   { title: "You're All Set" },

@@ -6,9 +6,9 @@ import { Waveform } from '@/components/call-player';
 const MAX = 250;
 const OPEN = 'Thanks for calling. All calls are recorded for quality and training purposes.';
 const GREETINGS = [
-  { label: 'Warm and Welcoming', text: `${OPEN} This is Amy at your practice. How can I help you today?` },
-  { label: 'Short and Clear', text: `${OPEN} This is Amy. Are you calling to book a visit?` },
-  { label: 'New Patients First', text: `${OPEN} This is Amy. Are you a new or returning patient?` },
+  { label: 'Warm and Welcoming', text: `${OPEN} This is Annie at your practice. How can I help you today?` },
+  { label: 'Short and Clear', text: `${OPEN} This is Annie. Are you calling to book a visit?` },
+  { label: 'New Patients First', text: `${OPEN} This is Annie. Are you a new or returning patient?` },
 ];
 const VOICES = ['Warm', 'Bright', 'Calm'];
 
@@ -31,7 +31,7 @@ export function GreetingPreview() {
   return (
     <div className="greeting-preview">
       <div>
-        <div className="flex items-center gap-3"><h3 className="text-2xl font-extrabold">How Should Amy Answer?</h3><span className="sample-tag">Sample</span></div>
+        <div className="flex items-center gap-3"><h3 className="text-2xl font-extrabold">How Should Annie Answer?</h3><span className="sample-tag">Sample</span></div>
         <p className="mt-2 text-sm text-muted-foreground">Pick a ready-made greeting or write your own.</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {GREETINGS.map((g) => <Button key={g.label} variant="outline" size="sm" aria-pressed={greeting === g.text} onClick={() => setGreeting(g.text)}>{g.label}</Button>)}
@@ -47,7 +47,7 @@ export function GreetingPreview() {
       </div>
       <div className="caller-phone" aria-label="What Callers Hear">
         <p className="text-xs font-bold uppercase text-muted-foreground">What Callers Hear</p>
-        <div className="caller-bubble"><strong>Amy · {voice}</strong><p>{greeting || '…'}</p></div>
+        <div className="caller-bubble"><strong>Annie · {voice}</strong><p>{greeting || '…'}</p></div>
         <Waveform playing={hearing} />
       </div>
     </div>

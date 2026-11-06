@@ -8,12 +8,12 @@ import joseph from "@/assets/joseph.jpg.asset.json";
 import trisha from "@/assets/trisha.jpg.asset.json";
 
 export const AGENT_PORTRAITS: Record<string, string> = {
-  Amy: amy,
-  Leena: leena.url,
-  Morgan: morgan.url,
-  Kim: kim.url,
-  Stephanie: stephanie.url,
-  Elise: elise.url,
-  Joseph: joseph.url,
-  Trisha: trisha.url,
+  Annie: amy,
+  Sarah: leena.url,
+  Paula: morgan.url,
+  Claire: kim.url,
+  Fiona: stephanie.url,
+  Emily: elise.url,
+  David: joseph.url,
+  Megan: trisha.url,
 };
